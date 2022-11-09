@@ -1,4 +1,5 @@
 import pygame
+import pygame.midi
 from sys import exit
 
 class Key(pygame.sprite.Sprite):
@@ -15,7 +16,8 @@ class Key(pygame.sprite.Sprite):
             self.key = pygame.image.load('black_key.png').convert_alpha()
             self.rect = self.image.get_rect()
             self.rect.center = [pos_x, pos_y]  
-            self.note_value = pygame.mixer.Sound(f'assets\\notes\\{notes[note_position]}.wav') 
+            self.note_value = pygame.mixer.Sound(f'assets\\notes\\{notes[note_position]}.wav')
+            self.note_value = pygame.mixer.Sound(midi_out.note_on(n, volume)) 
             self.note_position += 1
 
 class Keyboard(pygame.sprite.Sprite, Key):
